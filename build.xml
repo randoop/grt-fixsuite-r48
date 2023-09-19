@@ -30,9 +30,9 @@
 //-->
 
 <project name="fixsuite" default="compile" basedir=".">
-	<property name="version" value="dev" />
+	<property name="version" value="r48" />
 	<property name="lib.dir" value="lib" />
-	<property name="classes.dir" value="debug" />
+	<property name="classes.dir" value="build" />
 	<property name="dist.dir" value="dist" />
 	<property name="jar.dir" value="jar" />
 	<property name="library.src" value="library" />
@@ -50,9 +50,9 @@
 	</target>
 
 	<target name="clean">
-		<delete dir="${classes.dir}" verbose="true" />
-		<delete dir="${jar.dir}" verbose="true" />
-		<delete dir="${dist.dir}" verbose="true" />
+		<delete dir="${classes.dir}" />
+		<delete dir="${jar.dir}" />
+		<delete dir="${dist.dir}" />
 	</target>
 
 	<target name="compile" depends="clean, mkdir_classes">
