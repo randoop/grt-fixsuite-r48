@@ -62,8 +62,6 @@
 					<include name="**/*.jar" />
 				</fileset>
 			</classpath>
-			<classpath location="${major.jar}"/>
-			<compilerarg value="${plugin}"/>
 		</javac>
 	</target>
 
