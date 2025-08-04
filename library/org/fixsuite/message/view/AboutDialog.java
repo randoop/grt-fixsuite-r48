@@ -30,6 +30,9 @@
 
 package org.fixsuite.message.view;
 
+import org.checkerframework.dataflow.qual.Pure;
+import org.checkerframework.dataflow.qual.Impure;
+import org.checkerframework.dataflow.qual.SideEffectFree;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -75,11 +78,13 @@ public class AboutDialog extends JDialog implements ActionListener,
 
     private JButton closeButton;
 
+    @Impure
     public AboutDialog() {
         super();
         initGUI();
     }
 
+    @Impure
     private void initGUI() {
         setLayout(new BorderLayout());
         setTitle("About");
@@ -122,12 +127,14 @@ public class AboutDialog extends JDialog implements ActionListener,
         pack();
     }
 
+    @Impure
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(closeButton)) {
             setVisible(false);
         }
     }
 
+    @Impure
     public void mouseClicked(MouseEvent e) {
         if (e.getSource().equals(linkLabel)) {
             if (e.getButton() == MouseEvent.BUTTON1) {
@@ -136,18 +143,23 @@ public class AboutDialog extends JDialog implements ActionListener,
         }
     }
 
+    @SideEffectFree
     public void mouseEntered(MouseEvent e) {
     }
 
+    @SideEffectFree
     public void mouseExited(MouseEvent e) {
     }
 
+    @SideEffectFree
     public void mousePressed(MouseEvent e) {
     }
 
+    @SideEffectFree
     public void mouseReleased(MouseEvent e) {
     }
 
+    @Impure
     private boolean invokeBrowser(String url) {
         boolean flag = operatingSystem();
         String s1 = null;
@@ -179,6 +191,7 @@ public class AboutDialog extends JDialog implements ActionListener,
         return true;
     }
 
+    @Pure
     private boolean operatingSystem() {
         String name = System.getProperty("os.name");
         return ((name != null) && (name.startsWith("Windows")));

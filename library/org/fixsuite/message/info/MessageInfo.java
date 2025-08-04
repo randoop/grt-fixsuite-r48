@@ -29,6 +29,8 @@
  */
 
 package org.fixsuite.message.info;
+import org.checkerframework.dataflow.qual.Impure;
+import org.checkerframework.dataflow.qual.Pure;
 
 /**
  * Represents a message as defined by the FIX specification.
@@ -50,6 +52,7 @@ public class MessageInfo extends ComponentInfo {
      * 
      * @return the messageType
      */
+    @Pure
     public String getMessageType() {
         return messageType;
     }
@@ -59,6 +62,7 @@ public class MessageInfo extends ComponentInfo {
      * 
      * @param messageType - the messageType to set
      */
+    @Impure
     public void setMessageType(String messageType) {
         this.messageType = messageType;
     }
@@ -68,6 +72,7 @@ public class MessageInfo extends ComponentInfo {
      * 
      * @return the section
      */
+    @Pure
     public String getSection() {
         return section;
     }
@@ -77,6 +82,7 @@ public class MessageInfo extends ComponentInfo {
      * 
      * @param section - the section to set
      */
+    @Impure
     public void setSection(String section) {
         this.section = section;
     }
@@ -86,6 +92,7 @@ public class MessageInfo extends ComponentInfo {
      * 
      * @return the overrideAbbreviation
      */
+    @Pure
     public String getOverrideAbbreviation() {
         return overrideAbbreviation;
     }
@@ -95,6 +102,7 @@ public class MessageInfo extends ComponentInfo {
      * 
      * @param overrideAbbreviation - the overrideAbbreviation to set
      */
+    @Impure
     public void setOverrideAbbreviation(String overrideAbbreviation) {
         this.overrideAbbreviation = overrideAbbreviation;
     }
@@ -104,6 +112,7 @@ public class MessageInfo extends ComponentInfo {
      * 
      * @return the volume
      */
+    @Pure
     public String getVolume() {
         return volume;
     }
@@ -113,6 +122,7 @@ public class MessageInfo extends ComponentInfo {
      * 
      * @param volume - the volume to set
      */
+    @Impure
     public void setVolume(String volume) {
         this.volume = volume;
     }

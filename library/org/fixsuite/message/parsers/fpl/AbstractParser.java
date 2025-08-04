@@ -30,6 +30,7 @@
 
 package org.fixsuite.message.parsers.fpl;
 
+import org.checkerframework.dataflow.qual.Impure;
 import java.io.File;
 import java.io.IOException;
 
@@ -55,6 +56,7 @@ public abstract class AbstractParser implements Parser {
      * @see com.jramoyo.fix.library.parser.Parser#parse(com.jramoyo.fix.library.model.DictionaryInfo,
      *      java.io.File)
      */
+    @Impure
     public boolean parse(DictionaryInfo dictionary, File xmlFile) {
         boolean result = true;
         try {
@@ -76,6 +78,7 @@ public abstract class AbstractParser implements Parser {
         return result;
     }
 
+    @Impure
     protected abstract void load(DictionaryInfo dictionary, Element root)
             throws Exception;
 

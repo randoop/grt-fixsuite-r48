@@ -30,6 +30,9 @@
 
 package org.fixsuite.message.info;
 
+import org.checkerframework.dataflow.qual.SideEffectFree;
+import org.checkerframework.dataflow.qual.Impure;
+import org.checkerframework.dataflow.qual.Pure;
 import java.util.List;
 
 /**
@@ -46,6 +49,7 @@ public interface CompositeFixInfo extends FixInfo {
      * @param id - a component id
      * @return the component given an id
      */
+    @Pure
     public ComponentInfo getComponent(int id);
 
     /**
@@ -54,6 +58,7 @@ public interface CompositeFixInfo extends FixInfo {
      * @param name - a component name;
      * @return the component given a name
      */
+    @Pure
     public ComponentInfo getComponent(String name);
 
     /**
@@ -61,6 +66,7 @@ public interface CompositeFixInfo extends FixInfo {
      * 
      * @return the components
      */
+    @SideEffectFree
     public List<ComponentInfo> getComponents();
 
     /**
@@ -69,6 +75,7 @@ public interface CompositeFixInfo extends FixInfo {
      * @param component - a component
      * @param position - a position
      */
+    @Impure
     public void addComponent(ComponentInfo component, double position);
 
     /**
@@ -77,6 +84,7 @@ public interface CompositeFixInfo extends FixInfo {
      * @param tagNumber - a tagNumber
      * @return a field given a tagNumber
      */
+    @Pure
     public FieldInfo getField(int tagNumber);
 
     /**
@@ -85,6 +93,7 @@ public interface CompositeFixInfo extends FixInfo {
      * @param name - a name
      * @return a field given a name
      */
+    @Pure
     public FieldInfo getField(String name);
 
     /**
@@ -92,6 +101,7 @@ public interface CompositeFixInfo extends FixInfo {
      * 
      * @return the fields
      */
+    @SideEffectFree
     public List<FieldInfo> getFields();
 
     /**
@@ -100,6 +110,7 @@ public interface CompositeFixInfo extends FixInfo {
      * @param field - a field
      * @param position - a position
      */
+    @Impure
     public void addField(FieldInfo field, double position);
 
     /**
@@ -109,6 +120,7 @@ public interface CompositeFixInfo extends FixInfo {
      * @param field - a field
      * @param group - a group
      */
+    @Impure
     public void replaceAsGroup(FieldInfo field, GroupInfo group);
 
     /**
@@ -116,6 +128,7 @@ public interface CompositeFixInfo extends FixInfo {
      * 
      * @return the items in this CompositeInfo
      */
+    @SideEffectFree
     public List<FixInfo> getItems();
 
 }

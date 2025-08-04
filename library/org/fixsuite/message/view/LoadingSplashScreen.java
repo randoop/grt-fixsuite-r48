@@ -30,6 +30,7 @@
 
 package org.fixsuite.message.view;
 
+import org.checkerframework.dataflow.qual.Impure;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
@@ -44,10 +45,12 @@ public class LoadingSplashScreen extends JWindow {
 
     private static final long serialVersionUID = 1L;
 
+    @Impure
     public LoadingSplashScreen() {
         initGUI();
     }
 
+    @Impure
     private void initGUI() {
         // Setup the splash screen
         setLayout(new BorderLayout());
@@ -58,12 +61,14 @@ public class LoadingSplashScreen extends JWindow {
         pack();
     }
 
+    @Impure
     public void splash() {
         // Show the splash screen
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
+    @Impure
     public void unSplash() {
         setVisible(false);
         dispose();

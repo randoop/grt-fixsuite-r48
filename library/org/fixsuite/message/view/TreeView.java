@@ -30,6 +30,9 @@
 
 package org.fixsuite.message.view;
 
+import org.checkerframework.dataflow.qual.Impure;
+import org.checkerframework.dataflow.qual.Pure;
+import org.checkerframework.dataflow.qual.SideEffectFree;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -91,12 +94,14 @@ public class TreeView extends JPanel implements ActionListener, KeyListener,
     /**
      * Creates a new TreeView
      */
+    @Impure
     public TreeView(Library library) {
         super();
         this.library = library;
         initGUI();
     }
 
+    @Impure
     private void initGUI() {
         // Set the layout
         setLayout(new BorderLayout());
@@ -143,6 +148,7 @@ public class TreeView extends JPanel implements ActionListener, KeyListener,
         add(toolbar, BorderLayout.NORTH);
     }
 
+    @Impure
     private FixInfoTreeNode loadFIXTree() {
         FixInfoTreeNode root = new FixInfoTreeNode("Dictionaries");
         FixInfoTreeNode node;
@@ -155,6 +161,7 @@ public class TreeView extends JPanel implements ActionListener, KeyListener,
         return root;
     }
 
+    @Impure
     private void loadMessages(FixInfoTreeNode versionNode,
             DictionaryInfo dictionary) {
         FixInfoTreeNode node;
@@ -165,6 +172,7 @@ public class TreeView extends JPanel implements ActionListener, KeyListener,
         }
     }
 
+    @Impure
     private void loadItems(FixInfoTreeNode branchNode,
             CompositeFixInfo leafNode, int level) {
         level++;
@@ -180,6 +188,7 @@ public class TreeView extends JPanel implements ActionListener, KeyListener,
         }
     }
 
+    @Impure
     private void expandAll() {
         synchronized (fixTree) {
             int row = 0;
@@ -190,6 +199,7 @@ public class TreeView extends JPanel implements ActionListener, KeyListener,
         }
     }
 
+    @Impure
     private void collapseAll() {
         synchronized (fixTree) {
             int row = fixTree.getRowCount() - 1;
@@ -200,6 +210,7 @@ public class TreeView extends JPanel implements ActionListener, KeyListener,
         }
     }
 
+    @Impure
     private void search(FixInfoTreeNode node, String searchString) {
         int count = 0;
 
@@ -239,6 +250,7 @@ public class TreeView extends JPanel implements ActionListener, KeyListener,
         }
     }
 
+    @Impure
     private void clear(FixInfoTreeNode node) {
         int count = 0;
         node.setHighlighted(false);
@@ -250,6 +262,7 @@ public class TreeView extends JPanel implements ActionListener, KeyListener,
         }
     }
 
+    @Impure
     public void valueChanged(TreeSelectionEvent event) {
         FixInfoTreeNode node = (FixInfoTreeNode) fixTree
                 .getLastSelectedPathComponent();
@@ -280,6 +293,7 @@ public class TreeView extends JPanel implements ActionListener, KeyListener,
         }
     }
 
+    @Impure
     public void actionPerformed(ActionEvent event) {
         if (event.getSource().equals(collapseButton)) {
             collapseAll();
@@ -297,15 +311,18 @@ public class TreeView extends JPanel implements ActionListener, KeyListener,
 
     }
 
+    @Impure
     public void keyPressed(KeyEvent event) {
         if (event.getKeyCode() == KeyEvent.VK_ENTER) {
             searchButton.doClick();
         }
     }
 
+    @SideEffectFree
     public void keyReleased(KeyEvent event) {
     }
 
+    @SideEffectFree
     public void keyTyped(KeyEvent event) {
     }
 
@@ -315,15 +332,18 @@ public class TreeView extends JPanel implements ActionListener, KeyListener,
 
         private boolean isHighlighted;
 
+        @Impure
         private FixInfoTreeNode(Object userObject) {
             super(userObject);
             isHighlighted = false;
         }
 
+        @Pure
         private boolean isHighlighted() {
             return isHighlighted;
         }
 
+        @Impure
         private void setHighlighted(boolean isHighlighted) {
             this.isHighlighted = isHighlighted;
         }
@@ -334,6 +354,7 @@ public class TreeView extends JPanel implements ActionListener, KeyListener,
 
         private static final long serialVersionUID = 1L;
 
+        @Impure
         public Component getTreeCellRendererComponent(JTree tree, Object value,
                 boolean sel, boolean expanded, boolean leaf, int row,
                 boolean hasFocus) {

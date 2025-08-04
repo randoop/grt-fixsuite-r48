@@ -30,6 +30,9 @@
 
 package org.fixsuite.message.info;
 
+import org.checkerframework.dataflow.qual.Pure;
+import org.checkerframework.dataflow.qual.Impure;
+import org.checkerframework.dataflow.qual.SideEffectFree;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
@@ -66,6 +69,7 @@ public class DictionaryInfo {
      * 
      * @param version - a version
      */
+    @SideEffectFree
     public DictionaryInfo(String version) {
         this.version = version;
     }
@@ -75,6 +79,7 @@ public class DictionaryInfo {
      * 
      * @return the fields
      */
+    @SideEffectFree
     public List<FieldInfo> getFields() {
         if (fieldsByTagNumber != null) {
             return new ArrayList<FieldInfo>(fieldsByTagNumber.values());
@@ -88,6 +93,7 @@ public class DictionaryInfo {
      * @param tagNumber - a tagNumber
      * @return a field given a tagNumber
      */
+    @Pure
     public FieldInfo getField(int tagNumber) {
         if (fieldsByTagNumber != null) {
             return fieldsByTagNumber.get(tagNumber);
@@ -101,6 +107,7 @@ public class DictionaryInfo {
      * @param name - a name
      * @return a field given a name
      */
+    @Pure
     public FieldInfo getField(String name) {
         if (fieldsByName != null) {
             return fieldsByName.get(name);
@@ -113,6 +120,7 @@ public class DictionaryInfo {
      * 
      * @param field - a field
      */
+    @Impure
     public void addField(FieldInfo field) {
         if (fieldsByTagNumber == null) {
             fieldsByTagNumber = new TreeMap<Integer, FieldInfo>();
@@ -127,6 +135,7 @@ public class DictionaryInfo {
      * 
      * @return the components
      */
+    @SideEffectFree
     public List<ComponentInfo> getComponents() {
         if (componentsByName != null) {
             return new ArrayList<ComponentInfo>(componentsByName.values());
@@ -140,6 +149,7 @@ public class DictionaryInfo {
      * @param id - an id
      * @return a component given an id
      */
+    @Pure
     public ComponentInfo getComponent(int id) {
         if (componentsById != null) {
             return componentsById.get(id);
@@ -153,6 +163,7 @@ public class DictionaryInfo {
      * @param name - a name
      * @return a component given a name
      */
+    @Pure
     public ComponentInfo getComponent(String name) {
         if (componentsByName != null) {
             return componentsByName.get(name);
@@ -165,6 +176,7 @@ public class DictionaryInfo {
      * 
      * @param component
      */
+    @Impure
     public void addComponent(ComponentInfo component) {
         if (componentsByName == null) {
             componentsByName = new TreeMap<String, ComponentInfo>();
@@ -181,6 +193,7 @@ public class DictionaryInfo {
      * @param field - a field
      * @param group - a group
      */
+    @Impure
     public void replaceAsGroup(FieldInfo field, GroupInfo group) {
         fieldsByTagNumber.put(field.getTagNumber(), group);
         fieldsByName.put(field.getName(), group);
@@ -192,6 +205,7 @@ public class DictionaryInfo {
      * @param id - an id
      * @return a message given an id
      */
+    @Pure
     public MessageInfo getMessage(int id) {
         if (messagesById != null) {
             return messagesById.get(id);
@@ -206,6 +220,7 @@ public class DictionaryInfo {
      * @param name - a name
      * @return a message given a name
      */
+    @Pure
     public MessageInfo getMessage(String name) {
         if (messagesByName != null) {
             return messagesByName.get(name);
@@ -214,6 +229,7 @@ public class DictionaryInfo {
         }
     }
 
+    @SideEffectFree
     public List<MessageInfo> getMessages() {
         return new ArrayList<MessageInfo>(messagesById.values());
     }
@@ -223,6 +239,7 @@ public class DictionaryInfo {
      * 
      * @param message - a message
      */
+    @Impure
     public void addMessage(MessageInfo message) {
         if (messagesByName == null) {
             messagesByName = new TreeMap<String, MessageInfo>();
@@ -237,6 +254,7 @@ public class DictionaryInfo {
      * 
      * @return the version
      */
+    @Pure
     public String getVersion() {
         return version;
     }
@@ -246,6 +264,7 @@ public class DictionaryInfo {
      * 
      * @param version - the version to set
      */
+    @Impure
     public void setVersion(String version) {
         this.version = version;
     }
@@ -253,6 +272,7 @@ public class DictionaryInfo {
     /**
      * Increments the loadCount
      */
+    @Impure
     public void incrementLoadCount() {
         loadCount++;
     }
@@ -262,6 +282,7 @@ public class DictionaryInfo {
      * 
      * @return whether the dictionary is loaded
      */
+    @Pure
     public boolean isLoaded() {
         return loadCount == 5;
     }

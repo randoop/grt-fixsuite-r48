@@ -30,6 +30,7 @@
 
 package org.fixsuite.message.view;
 
+import org.checkerframework.dataflow.qual.Impure;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -48,12 +49,14 @@ public class InfoPanel extends JPanel {
 
     private JLabel value;
 
+    @Impure
     public InfoPanel(String label, String value) {
         initGUI();
         this.label.setText(label + ": ");
         this.value.setText(value);
     }
 
+    @Impure
     private void initGUI() {
         setLayout(new GridLayout(1, 2, 10, 10));
         label = new JLabel();
@@ -68,6 +71,7 @@ public class InfoPanel extends JPanel {
         add(value);
     }
 
+    @Impure
     public void setValue(String value) {
         if (value != null && !value.equals("")) {
             this.value.setText(value);

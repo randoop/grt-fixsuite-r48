@@ -30,6 +30,7 @@
 
 package org.fixsuite.message.parsers.fpl;
 
+import org.checkerframework.dataflow.qual.Impure;
 import java.util.Iterator;
 import java.util.List;
 
@@ -68,6 +69,7 @@ public class MsgTypeParser extends AbstractParser {
      * @see org.fixsuite.message.parsers.fpl.AbstractParser#load(org.fixsuite.message.info.DictionaryInfo,
      *      org.jdom.Element)
      */
+    @Impure
     @SuppressWarnings("unchecked")
     protected void load(DictionaryInfo dictionary, Element root) {
         List nodes = root.getChildren();

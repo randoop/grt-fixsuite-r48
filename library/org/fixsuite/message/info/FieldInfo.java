@@ -30,6 +30,9 @@
 
 package org.fixsuite.message.info;
 
+import org.checkerframework.dataflow.qual.Pure;
+import org.checkerframework.dataflow.qual.Impure;
+import org.checkerframework.dataflow.qual.SideEffectFree;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
@@ -78,6 +81,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @return the tagNumber
      */
+    @Pure
     public int getTagNumber() {
         return tagNumber;
     }
@@ -87,6 +91,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @param tagNumber - the tagNumber to set
      */
+    @Impure
     public void setTagNumber(int tagNumber) {
         this.tagNumber = tagNumber;
     }
@@ -96,6 +101,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @return the fieldName
      */
+    @Pure
     public String getName() {
         return name;
     }
@@ -105,6 +111,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @param name - the fieldName to set
      */
+    @Impure
     public void setName(String name) {
         this.name = name;
     }
@@ -114,6 +121,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @return the dataType
      */
+    @Pure
     public String getDataType() {
         return dataType;
     }
@@ -123,6 +131,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @param dataType - the dataType to set
      */
+    @Impure
     public void setDataType(String dataType) {
         this.dataType = dataType;
     }
@@ -132,6 +141,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @return the description
      */
+    @Pure
     public String getDescription() {
         return description;
     }
@@ -141,6 +151,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @param description - the description to set
      */
+    @Impure
     public void setDescription(String description) {
         this.description = description;
     }
@@ -150,6 +161,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @return the comments
      */
+    @Pure
     public String getComments() {
         return comments;
     }
@@ -159,6 +171,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @param comments - the comments to set
      */
+    @Impure
     public void setComments(String comments) {
         this.comments = comments;
     }
@@ -168,6 +181,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @return the abbreviation
      */
+    @Pure
     public String getAbbreviation() {
         return abbreviation;
     }
@@ -177,6 +191,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @param abbreviation - the abbreviation to set
      */
+    @Impure
     public void setAbbreviation(String abbreviation) {
         this.abbreviation = abbreviation;
     }
@@ -186,6 +201,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @return the overrideXmlName
      */
+    @Pure
     public String getOverrideXmlName() {
         return overrideXmlName;
     }
@@ -195,6 +211,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @param overrideXmlName - the overrideXmlName to set
      */
+    @Impure
     public void setOverrideXmlName(String overrideXmlName) {
         this.overrideXmlName = overrideXmlName;
     }
@@ -204,6 +221,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @return the baseCategory
      */
+    @Pure
     public String getBaseCategory() {
         return baseCategory;
     }
@@ -213,6 +231,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @param baseCategory - the baseCategory to set
      */
+    @Impure
     public void setBaseCategory(String baseCategory) {
         this.baseCategory = baseCategory;
     }
@@ -222,6 +241,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @return the baseCategoryXmlName
      */
+    @Pure
     public String getBaseCategoryXmlName() {
         return baseCategoryXmlName;
     }
@@ -231,6 +251,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @param baseCategoryXmlName - the baseCategoryXmlName to set
      */
+    @Impure
     public void setBaseCategoryXmlName(String baseCategoryXmlName) {
         this.baseCategoryXmlName = baseCategoryXmlName;
     }
@@ -240,6 +261,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @return the unionDataType
      */
+    @Pure
     public String getUnionDataType() {
         return unionDataType;
     }
@@ -249,6 +271,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @param unionDataType - the unionDataType to set
      */
+    @Impure
     public void setUnionDataType(String unionDataType) {
         this.unionDataType = unionDataType;
     }
@@ -258,6 +281,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @return the usesEnumFromTag
      */
+    @Pure
     public String getUsesEnumFromTag() {
         return usesEnumFromTag;
     }
@@ -267,6 +291,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @param usesEnumFromTag - the usesEnumFromTag to set
      */
+    @Impure
     public void setUsesEnumFromTag(String usesEnumFromTag) {
         this.usesEnumFromTag = usesEnumFromTag;
     }
@@ -276,6 +301,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @return the length
      */
+    @Pure
     public int getLength() {
         return length;
     }
@@ -285,6 +311,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @param length - the length to set
      */
+    @Impure
     public void setLength(int length) {
         this.length = length;
     }
@@ -294,6 +321,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @return the isNotRequiredXml
      */
+    @Pure
     public boolean isNotRequiredXml() {
         return isNotRequiredXml;
     }
@@ -303,6 +331,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @param isNotRequiredXml - the isNotRequiredXml to set
      */
+    @Impure
     public void setNotRequiredXml(boolean isNotRequiredXml) {
         this.isNotRequiredXml = isNotRequiredXml;
     }
@@ -312,6 +341,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @return the deprecatingVersion
      */
+    @Pure
     public String getDeprecatingVersion() {
         return deprecatingVersion;
     }
@@ -321,6 +351,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @param deprecatingVersion - the deprecatingVersion to set
      */
+    @Impure
     public void setDeprecatingVersion(String deprecatingVersion) {
         this.deprecatingVersion = deprecatingVersion;
     }
@@ -330,6 +361,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @return the requiringComponents
      */
+    @Pure
     public List<ComponentInfo> getRequiringComponents() {
         return requiringComponents;
     }
@@ -339,6 +371,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @param component - a requiringComponent
      */
+    @Impure
     public void addRequiringComponent(ComponentInfo component) {
         if (requiringComponents == null) {
             requiringComponents = new ArrayList<ComponentInfo>();
@@ -351,6 +384,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @param requiringComponents - the requiringComponent to set
      */
+    @Impure
     protected void setRequiringComponents(
             List<ComponentInfo> requiringComponents) {
         this.requiringComponents = requiringComponents;
@@ -362,6 +396,7 @@ public class FieldInfo implements FixInfo {
      * @param component - a component
      * @return whether this field is required in the specified component
      */
+    @Pure
     public boolean isRequiredInComponent(ComponentInfo component) {
         if (requiringComponents != null) {
             return requiringComponents.contains(component);
@@ -375,6 +410,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @return the validValues
      */
+    @SideEffectFree
     public List<ValueInfo> getValidValues() {
         if (validValues != null) {
             return new ArrayList<ValueInfo>(validValues.values());
@@ -388,6 +424,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @param value - a value
      */
+    @Impure
     public void addValidValue(ValueInfo value) {
         if (validValues == null) {
             validValues = new TreeMap<String, ValueInfo>();
@@ -401,6 +438,7 @@ public class FieldInfo implements FixInfo {
      * @param value - a value
      * @return whether a given value is valid
      */
+    @SideEffectFree
     public boolean isValidValue(String value) {
         return validValues.keySet().contains(value);
     }
@@ -410,6 +448,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @param validValues - the validValues to set
      */
+    @Impure
     protected void setValidValues(TreeMap<String, ValueInfo> validValues) {
         this.validValues = validValues;
     }
@@ -419,6 +458,7 @@ public class FieldInfo implements FixInfo {
      * 
      * @return the validValues Map
      */
+    @Pure
     protected TreeMap<String, ValueInfo> getValidValuesMap() {
         return validValues;
     }

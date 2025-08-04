@@ -30,6 +30,8 @@
 
 package org.fixsuite.message;
 
+import org.checkerframework.dataflow.qual.Impure;
+import org.checkerframework.dataflow.qual.Pure;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -113,6 +115,7 @@ public class LibrarySuite extends JFrame implements ActionListener {
     /**
      * Creates a new LibrarySuite
      */
+    @Impure
     public LibrarySuite() {
         super();
         library = new Library();
@@ -123,6 +126,7 @@ public class LibrarySuite extends JFrame implements ActionListener {
         new Thread(new LibraryLoader()).start();
     }
 
+    @Impure
     private void initGUI() {
         try {
             // Set the layout
@@ -192,6 +196,7 @@ public class LibrarySuite extends JFrame implements ActionListener {
             setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
             addWindowListener(new WindowAdapter() {
 
+                @Impure
                 public void windowClosing(WindowEvent event) {
                     exitFrame();
                 }
@@ -208,6 +213,7 @@ public class LibrarySuite extends JFrame implements ActionListener {
         }
     }
 
+    @Impure
     public static void main(String[] args) {
         PropertyConfigurator.configure(".\\resources\\log4j.properties");
 
@@ -219,6 +225,7 @@ public class LibrarySuite extends JFrame implements ActionListener {
 
         SwingUtilities.invokeLater(new Runnable() {
 
+            @Impure
             public void run() {
                 logger.info("Starting FixSuite - Library...");
                 instance = new LibrarySuite();
@@ -227,10 +234,12 @@ public class LibrarySuite extends JFrame implements ActionListener {
         });
     }
 
+    @Pure
     public static LibrarySuite getInstance() {
         return instance;
     }
 
+    @Impure
     public void actionPerformed(ActionEvent event) {
         if (event.getSource().equals(exitMenuItem)) {
             exitFrame();
@@ -240,10 +249,12 @@ public class LibrarySuite extends JFrame implements ActionListener {
         }
     }
 
+    @Pure
     public DetailsPanel getDetailsPanel() {
         return detailsPanel;
     }
 
+    @Impure
     private void exitFrame() {
         int choice = JOptionPane.showConfirmDialog(this,
                 "Are you sure you want to exit?", "Exit",
@@ -256,6 +267,7 @@ public class LibrarySuite extends JFrame implements ActionListener {
 
     private class LibraryLoader implements Runnable {
 
+        @Impure
         public void run() {
             library.loadFromDirectory(".\\resources\\libraryFpl");
             // Dispose splash screen

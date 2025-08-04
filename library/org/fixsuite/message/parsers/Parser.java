@@ -30,6 +30,7 @@
 
 package org.fixsuite.message.parsers;
 
+import org.checkerframework.dataflow.qual.Impure;
 import java.io.File;
 
 import org.fixsuite.message.info.DictionaryInfo;
@@ -41,6 +42,7 @@ import org.fixsuite.message.info.DictionaryInfo;
  */
 public interface Parser {
 
+    @Impure
     public boolean parse(DictionaryInfo dictionary, File xmlFile);
 
 }

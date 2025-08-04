@@ -29,6 +29,8 @@
  */
 
 package org.fixsuite.message.parsers.fpl;
+import org.checkerframework.dataflow.qual.Impure;
+import org.checkerframework.dataflow.qual.Pure;
 
 /**
  * Model representing an element in a MsgContents.xml specification. This is
@@ -55,6 +57,7 @@ public class MsgContentModel implements Comparable<MsgContentModel> {
      * 
      * @return the indent
      */
+    @Pure
     public int getIndent() {
         return indent;
     }
@@ -64,6 +67,7 @@ public class MsgContentModel implements Comparable<MsgContentModel> {
      * 
      * @param indent - the indent to set
      */
+    @Impure
     public void setIndent(int indent) {
         this.indent = indent;
     }
@@ -73,6 +77,7 @@ public class MsgContentModel implements Comparable<MsgContentModel> {
      * 
      * @return the position
      */
+    @Pure
     public double getPosition() {
         return position;
     }
@@ -82,6 +87,7 @@ public class MsgContentModel implements Comparable<MsgContentModel> {
      * 
      * @param position - the position to set
      */
+    @Impure
     public void setPosition(double position) {
         this.position = position;
     }
@@ -91,6 +97,7 @@ public class MsgContentModel implements Comparable<MsgContentModel> {
      * 
      * @return the tagText
      */
+    @Pure
     public String getTagText() {
         return tagText;
     }
@@ -100,6 +107,7 @@ public class MsgContentModel implements Comparable<MsgContentModel> {
      * 
      * @param tagText - the tagText to set
      */
+    @Impure
     public void setTagText(String tagText) {
         this.tagText = tagText;
     }
@@ -109,6 +117,7 @@ public class MsgContentModel implements Comparable<MsgContentModel> {
      * 
      * @return the isRequired
      */
+    @Pure
     public boolean isRequired() {
         return isRequired;
     }
@@ -118,6 +127,7 @@ public class MsgContentModel implements Comparable<MsgContentModel> {
      * 
      * @param isRequired - the isRequired to set
      */
+    @Impure
     public void setRequired(boolean isRequired) {
         this.isRequired = isRequired;
     }
@@ -127,6 +137,7 @@ public class MsgContentModel implements Comparable<MsgContentModel> {
      * 
      * @return the description
      */
+    @Pure
     public String getDescription() {
         return description;
     }
@@ -136,6 +147,7 @@ public class MsgContentModel implements Comparable<MsgContentModel> {
      * 
      * @param description - the description to set
      */
+    @Impure
     public void setDescription(String description) {
         this.description = description;
     }
@@ -145,6 +157,7 @@ public class MsgContentModel implements Comparable<MsgContentModel> {
      * 
      * @return the id
      */
+    @Pure
     public int getId() {
         return id;
     }
@@ -154,10 +167,13 @@ public class MsgContentModel implements Comparable<MsgContentModel> {
      * 
      * @param id - the id to set
      */
+    @Impure
     public void setId(int id) {
         this.id = id;
     }
 
+    @Pure
+    @Impure
     public int compareTo(MsgContentModel model) {
         if (id < model.getId()) {
             return -1;

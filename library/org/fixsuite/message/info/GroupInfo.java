@@ -30,6 +30,9 @@
 
 package org.fixsuite.message.info;
 
+import org.checkerframework.dataflow.qual.Impure;
+import org.checkerframework.dataflow.qual.SideEffectFree;
+import org.checkerframework.dataflow.qual.Pure;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -62,6 +65,7 @@ public class GroupInfo extends FieldInfo implements CompositeFixInfo {
      * 
      * @param field - a field to populate from
      */
+    @Impure
     public GroupInfo(FieldInfo field) {
         setTagNumber(field.getTagNumber());
         setName(field.getName());
@@ -83,6 +87,7 @@ public class GroupInfo extends FieldInfo implements CompositeFixInfo {
     /**
      * @see org.fixsuite.message.info.CompositeFixInfo#getFields()
      */
+    @SideEffectFree
     public List<FieldInfo> getFields() {
         if (fieldsByTagNumber != null) {
             return new ArrayList<FieldInfo>(fieldsByTagNumber.values());
@@ -93,6 +98,7 @@ public class GroupInfo extends FieldInfo implements CompositeFixInfo {
     /**
      * @see org.fixsuite.message.info.CompositeFixInfo#getField(int)
      */
+    @Pure
     public FieldInfo getField(int tagNumber) {
         if (fieldsByTagNumber != null) {
             return fieldsByTagNumber.get(tagNumber);
@@ -103,6 +109,7 @@ public class GroupInfo extends FieldInfo implements CompositeFixInfo {
     /**
      * @see org.fixsuite.message.info.CompositeFixInfo#getField(java.lang.String)
      */
+    @Pure
     public FieldInfo getField(String name) {
         if (fieldsByName != null) {
             return fieldsByName.get(name);
@@ -114,6 +121,7 @@ public class GroupInfo extends FieldInfo implements CompositeFixInfo {
      * @see org.fixsuite.message.info.CompositeFixInfo#addField(org.fixsuite.message.info.FieldInfo,
      *      double)
      */
+    @Impure
     public void addField(FieldInfo field, double position) {
         if (fieldsByTagNumber == null) {
             fieldsByTagNumber = new TreeMap<Integer, FieldInfo>();
@@ -127,6 +135,7 @@ public class GroupInfo extends FieldInfo implements CompositeFixInfo {
     /**
      * @see org.fixsuite.message.info.CompositeFixInfo#getComponents()
      */
+    @SideEffectFree
     public List<ComponentInfo> getComponents() {
         if (componentsByName != null) {
             return new ArrayList<ComponentInfo>(componentsByName.values());
@@ -137,6 +146,7 @@ public class GroupInfo extends FieldInfo implements CompositeFixInfo {
     /**
      * @see org.fixsuite.message.info.CompositeFixInfo#getComponent(int)
      */
+    @Pure
     public ComponentInfo getComponent(int id) {
         if (componentsById != null) {
             return componentsById.get(id);
@@ -147,6 +157,7 @@ public class GroupInfo extends FieldInfo implements CompositeFixInfo {
     /**
      * @see org.fixsuite.message.info.CompositeFixInfo#getComponent(java.lang.String)
      */
+    @Pure
     public ComponentInfo getComponent(String name) {
         if (componentsByName != null) {
             return componentsByName.get(name);
@@ -158,6 +169,7 @@ public class GroupInfo extends FieldInfo implements CompositeFixInfo {
      * @see org.fixsuite.message.info.CompositeFixInfo#addComponent(org.fixsuite.message.info.ComponentInfo,
      *      double)
      */
+    @Impure
     public void addComponent(ComponentInfo component, double position) {
         if (componentsByName == null) {
             componentsByName = new TreeMap<String, ComponentInfo>();
@@ -171,6 +183,7 @@ public class GroupInfo extends FieldInfo implements CompositeFixInfo {
     /**
      * @see org.fixsuite.message.info.CompositeFixInfo#getItems()
      */
+    @SideEffectFree
     public List<FixInfo> getItems() {
         if (itemsByPosition != null) {
             return new ArrayList<FixInfo>(itemsByPosition.values());
@@ -182,6 +195,7 @@ public class GroupInfo extends FieldInfo implements CompositeFixInfo {
      * @see org.fixsuite.message.info.CompositeFixInfo#replaceAsGroup(org.fixsuite.message.info.FieldInfo,
      *      org.fixsuite.message.info.GroupInfo)
      */
+    @Impure
     public void replaceAsGroup(FieldInfo field, GroupInfo group) {
         fieldsByTagNumber.put(field.getTagNumber(), group);
         fieldsByName.put(field.getName(), group);
@@ -191,6 +205,7 @@ public class GroupInfo extends FieldInfo implements CompositeFixInfo {
         itemsByPosition.put(position, group);
     }
 
+    @Impure
     private void addItem(FixInfo item, double position) {
         if (itemsByPosition == null) {
             itemsByPosition = new TreeMap<Double, FixInfo>();

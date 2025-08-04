@@ -30,6 +30,7 @@
 
 package org.fixsuite.message.parsers.fpl;
 
+import org.checkerframework.dataflow.qual.Impure;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -66,6 +67,7 @@ public class MsgContentsParser extends AbstractParser {
     /**
      * Creates a new MsgContentsParser
      */
+    @Impure
     public MsgContentsParser() {
         indentStack = new LinkedList<GroupInfo>();
     }
@@ -74,6 +76,7 @@ public class MsgContentsParser extends AbstractParser {
      * @see org.fixsuite.message.parsers.fpl.AbstractParser#load(org.fixsuite.message.info.DictionaryInfo,
      *      org.jdom.Element)
      */
+    @Impure
     @SuppressWarnings("unchecked")
     protected void load(DictionaryInfo dictionary, Element root) {
         List nodes = root.getChildren();

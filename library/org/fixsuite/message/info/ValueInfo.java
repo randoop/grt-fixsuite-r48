@@ -29,6 +29,8 @@
  */
 
 package org.fixsuite.message.info;
+import org.checkerframework.dataflow.qual.Impure;
+import org.checkerframework.dataflow.qual.Pure;
 
 /**
  * Represents a Pre-defined value as defined by the FIX specification.
@@ -50,6 +52,7 @@ public class ValueInfo {
      * 
      * @return the value
      */
+    @Pure
     public String getValue() {
         return value;
     }
@@ -59,6 +62,7 @@ public class ValueInfo {
      * 
      * @param value - the value to set
      */
+    @Impure
     public void setValue(String value) {
         this.value = value;
     }
@@ -68,6 +72,7 @@ public class ValueInfo {
      * 
      * @return the description
      */
+    @Pure
     public String getDescription() {
         return description;
     }
@@ -77,6 +82,7 @@ public class ValueInfo {
      * 
      * @param description - the description to set
      */
+    @Impure
     public void setDescription(String description) {
         this.description = description;
     }
@@ -86,6 +92,7 @@ public class ValueInfo {
      * 
      * @return the group
      */
+    @Pure
     public String getGroup() {
         return group;
     }
@@ -95,6 +102,7 @@ public class ValueInfo {
      * 
      * @param group - the group to set
      */
+    @Impure
     public void setGroup(String group) {
         this.group = group;
     }
@@ -104,6 +112,7 @@ public class ValueInfo {
      * 
      * @return the deprecatingVersion
      */
+    @Pure
     public String getDeprecatingVersion() {
         return deprecatingVersion;
     }
@@ -113,6 +122,7 @@ public class ValueInfo {
      * 
      * @param deprecatingVersion - the deprecatingVersion to set
      */
+    @Impure
     public void setDeprecatingVersion(String deprecatingVersion) {
         this.deprecatingVersion = deprecatingVersion;
     }

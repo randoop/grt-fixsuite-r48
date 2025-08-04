@@ -30,6 +30,9 @@
 
 package org.fixsuite.message.info;
 
+import org.checkerframework.dataflow.qual.Impure;
+import org.checkerframework.dataflow.qual.Pure;
+import org.checkerframework.dataflow.qual.SideEffectFree;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -74,6 +77,7 @@ public class ComponentInfo implements CompositeFixInfo {
     /**
      * @see org.fixsuite.message.info.CompositeFixInfo#getFields()
      */
+    @SideEffectFree
     public List<FieldInfo> getFields() {
         if (fieldsByTagNumber != null) {
             return new ArrayList<FieldInfo>(fieldsByTagNumber.values());
@@ -84,6 +88,7 @@ public class ComponentInfo implements CompositeFixInfo {
     /**
      * @see org.fixsuite.message.info.CompositeFixInfo#getField(int)
      */
+    @Pure
     public FieldInfo getField(int tagNumber) {
         if (fieldsByTagNumber != null) {
             return fieldsByTagNumber.get(tagNumber);
@@ -94,6 +99,7 @@ public class ComponentInfo implements CompositeFixInfo {
     /**
      * @see org.fixsuite.message.info.CompositeFixInfo#getField(java.lang.String)
      */
+    @Pure
     public FieldInfo getField(String name) {
         if (fieldsByName != null) {
             return fieldsByName.get(name);
@@ -105,6 +111,7 @@ public class ComponentInfo implements CompositeFixInfo {
      * @see org.fixsuite.message.info.CompositeFixInfo#addField(org.fixsuite.message.info.FieldInfo,
      *      double)
      */
+    @Impure
     public void addField(FieldInfo field, double position) {
         if (fieldsByTagNumber == null) {
             fieldsByTagNumber = new TreeMap<Integer, FieldInfo>();
@@ -118,6 +125,7 @@ public class ComponentInfo implements CompositeFixInfo {
     /**
      * @see org.fixsuite.message.info.CompositeFixInfo#getComponents()
      */
+    @SideEffectFree
     public List<ComponentInfo> getComponents() {
         if (componentsByName != null) {
             return new ArrayList<ComponentInfo>(componentsByName.values());
@@ -128,6 +136,7 @@ public class ComponentInfo implements CompositeFixInfo {
     /**
      * @see org.fixsuite.message.info.CompositeFixInfo#getComponent(int)
      */
+    @Pure
     public ComponentInfo getComponent(int id) {
         if (componentsById != null) {
             return componentsById.get(id);
@@ -138,6 +147,7 @@ public class ComponentInfo implements CompositeFixInfo {
     /**
      * @see org.fixsuite.message.info.CompositeFixInfo#getComponent(java.lang.String)
      */
+    @Pure
     public ComponentInfo getComponent(String name) {
         if (componentsByName != null) {
             return componentsByName.get(name);
@@ -149,6 +159,7 @@ public class ComponentInfo implements CompositeFixInfo {
      * @see org.fixsuite.message.info.CompositeFixInfo#addComponent(org.fixsuite.message.info.ComponentInfo,
      *      double)
      */
+    @Impure
     public void addComponent(ComponentInfo component, double position) {
         if (componentsByName == null) {
             componentsByName = new TreeMap<String, ComponentInfo>();
@@ -162,6 +173,7 @@ public class ComponentInfo implements CompositeFixInfo {
     /**
      * @see org.fixsuite.message.info.CompositeFixInfo#getItems()
      */
+    @SideEffectFree
     public List<FixInfo> getItems() {
         if (itemsByPosition != null) {
             return new ArrayList<FixInfo>(itemsByPosition.values());
@@ -173,6 +185,7 @@ public class ComponentInfo implements CompositeFixInfo {
      * @see org.fixsuite.message.info.CompositeFixInfo#replaceAsGroup(org.fixsuite.message.info.FieldInfo,
      *      org.fixsuite.message.info.GroupInfo)
      */
+    @Impure
     public void replaceAsGroup(FieldInfo field, GroupInfo group) {
         fieldsByTagNumber.put(field.getTagNumber(), group);
         fieldsByName.put(field.getName(), group);
@@ -187,6 +200,7 @@ public class ComponentInfo implements CompositeFixInfo {
      * 
      * @return the name
      */
+    @Pure
     public String getName() {
         return name;
     }
@@ -196,6 +210,7 @@ public class ComponentInfo implements CompositeFixInfo {
      * 
      * @param name - the name to set
      */
+    @Impure
     public void setName(String name) {
         this.name = name;
     }
@@ -205,6 +220,7 @@ public class ComponentInfo implements CompositeFixInfo {
      * 
      * @return the componentType
      */
+    @Pure
     public String getComponentType() {
         return componentType;
     }
@@ -214,6 +230,7 @@ public class ComponentInfo implements CompositeFixInfo {
      * 
      * @param componentType - the componentType to set
      */
+    @Impure
     public void setComponentType(String componentType) {
         this.componentType = componentType;
     }
@@ -223,6 +240,7 @@ public class ComponentInfo implements CompositeFixInfo {
      * 
      * @return the category
      */
+    @Pure
     public String getCategory() {
         return category;
     }
@@ -232,6 +250,7 @@ public class ComponentInfo implements CompositeFixInfo {
      * 
      * @param category - the category to set
      */
+    @Impure
     public void setCategory(String category) {
         this.category = category;
     }
@@ -241,6 +260,7 @@ public class ComponentInfo implements CompositeFixInfo {
      * 
      * @return the id
      */
+    @Pure
     public int getId() {
         return id;
     }
@@ -250,6 +270,7 @@ public class ComponentInfo implements CompositeFixInfo {
      * 
      * @param id - the id to set
      */
+    @Impure
     public void setId(int id) {
         this.id = id;
     }
@@ -259,6 +280,7 @@ public class ComponentInfo implements CompositeFixInfo {
      * 
      * @return the abbreviation
      */
+    @Pure
     public String getAbbreviation() {
         return abbreviation;
     }
@@ -268,6 +290,7 @@ public class ComponentInfo implements CompositeFixInfo {
      * 
      * @param abbreviation - the abbreviation to set
      */
+    @Impure
     public void setAbbreviation(String abbreviation) {
         this.abbreviation = abbreviation;
     }
@@ -277,6 +300,7 @@ public class ComponentInfo implements CompositeFixInfo {
      * 
      * @return the isNotRequiredXml
      */
+    @Pure
     public boolean isNotRequiredXml() {
         return isNotRequiredXml;
     }
@@ -286,6 +310,7 @@ public class ComponentInfo implements CompositeFixInfo {
      * 
      * @param isNotRequiredXml - the isNotRequiredXml to set
      */
+    @Impure
     public void setNotRequiredXml(boolean isNotRequiredXml) {
         this.isNotRequiredXml = isNotRequiredXml;
     }
@@ -295,6 +320,7 @@ public class ComponentInfo implements CompositeFixInfo {
      * 
      * @return the isRequired
      */
+    @Pure
     public boolean isRequired() {
         return isRequired;
     }
@@ -304,10 +330,12 @@ public class ComponentInfo implements CompositeFixInfo {
      * 
      * @param isRequired - the isRequired to set
      */
+    @Impure
     public void setRequired(boolean isRequired) {
         this.isRequired = isRequired;
     }
 
+    @Impure
     private void addItem(FixInfo item, double position) {
         if (itemsByPosition == null) {
             itemsByPosition = new TreeMap<Double, FixInfo>();

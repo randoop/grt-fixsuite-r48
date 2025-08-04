@@ -30,6 +30,7 @@
 
 package org.fixsuite.message.view;
 
+import org.checkerframework.dataflow.qual.Impure;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -102,6 +103,7 @@ public class ListView extends JPanel implements ItemListener,
 
     private boolean isRequiredOnly;
 
+    @Impure
     public ListView(Library library) {
         super();
         this.library = library;
@@ -112,6 +114,7 @@ public class ListView extends JPanel implements ItemListener,
                 .load((DictionaryInfo) dictionaryComboBox.getItemAt(0));
     }
 
+    @Impure
     private void initGUI() {
         // Set the layout
         setLayout(new BorderLayout());
@@ -235,6 +238,7 @@ public class ListView extends JPanel implements ItemListener,
                 new Dimension(170, 768));
     }
 
+    @Impure
     public void itemStateChanged(ItemEvent event) {
         if (event.getSource().equals(dictionaryComboBox)
                 && event.getStateChange() == ItemEvent.SELECTED) {
@@ -256,6 +260,7 @@ public class ListView extends JPanel implements ItemListener,
 
     }
 
+    @Impure
     public void valueChanged(ListSelectionEvent event) {
         if (event.getSource().equals(messageList)
                 && !event.getValueIsAdjusting()
@@ -300,6 +305,7 @@ public class ListView extends JPanel implements ItemListener,
         }
     }
 
+    @Impure
     private void reloadWithFilter() {
         if (messageList != null) {
             MessageInfo message = (MessageInfo) messageList.getSelectedValue();
@@ -321,6 +327,7 @@ public class ListView extends JPanel implements ItemListener,
 
         private static final long serialVersionUID = 1L;
 
+        @Impure
         public void load(List<DictionaryInfo> dictionaries) {
             removeAllElements();
             for (DictionaryInfo dictionary : dictionaries) {
@@ -333,6 +340,7 @@ public class ListView extends JPanel implements ItemListener,
 
         private static final long serialVersionUID = 1L;
 
+        @Impure
         public void load(DictionaryInfo dictionary) {
             removeAllElements();
             for (MessageInfo message : dictionary.getMessages()) {
@@ -346,6 +354,7 @@ public class ListView extends JPanel implements ItemListener,
 
         private static final long serialVersionUID = 1L;
 
+        @Impure
         public void load(MessageInfo message) {
             removeAllElements();
             for (ComponentInfo component : message.getComponents()) {
@@ -359,6 +368,7 @@ public class ListView extends JPanel implements ItemListener,
 
         private static final long serialVersionUID = 1L;
 
+        @Impure
         public void load(ComponentInfo component) {
             removeAllElements();
             for (FieldInfo field : component.getFields()) {
@@ -378,6 +388,7 @@ public class ListView extends JPanel implements ItemListener,
             }
         }
 
+        @Impure
         private void load(GroupInfo group, ComponentInfo component) {
             for (FieldInfo field : group.getFields()) {
                 if (!isRequiredOnly) {
@@ -401,6 +412,7 @@ public class ListView extends JPanel implements ItemListener,
 
         private static final long serialVersionUID = 1L;
 
+        @Impure
         public Component getListCellRendererComponent(JList list, Object value,
                 int index, boolean isSelected, boolean cellHasFocus) {
             JLabel label = (JLabel) super.getListCellRendererComponent(list,
@@ -415,6 +427,7 @@ public class ListView extends JPanel implements ItemListener,
 
         private static final long serialVersionUID = 1L;
 
+        @Impure
         public Component getListCellRendererComponent(JList list, Object value,
                 int index, boolean isSelected, boolean cellHasFocus) {
             JLabel label = (JLabel) super.getListCellRendererComponent(list,
@@ -432,6 +445,7 @@ public class ListView extends JPanel implements ItemListener,
 
         private static final long serialVersionUID = 1L;
 
+        @Impure
         public Component getListCellRendererComponent(JList list, Object value,
                 int index, boolean isSelected, boolean cellHasFocus) {
             JLabel label = (JLabel) super.getListCellRendererComponent(list,
@@ -448,6 +462,7 @@ public class ListView extends JPanel implements ItemListener,
 
         private static final long serialVersionUID = 1L;
 
+        @Impure
         public Component getListCellRendererComponent(JList list, Object value,
                 int index, boolean isSelected, boolean cellHasFocus) {
             JLabel label = (JLabel) super.getListCellRendererComponent(list,

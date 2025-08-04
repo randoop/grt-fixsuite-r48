@@ -30,6 +30,8 @@
 
 package org.fixsuite.message.view;
 
+import org.checkerframework.dataflow.qual.Impure;
+import org.checkerframework.dataflow.qual.SideEffectFree;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -168,10 +170,12 @@ public class DetailsPanel extends JPanel implements ActionListener,
 
     private JPanel messageInfoPanel;
 
+    @Impure
     public DetailsPanel() {
         initGUI();
     }
 
+    @Impure
     private void initGUI() {
         setLayout(new BorderLayout());
 
@@ -334,6 +338,7 @@ public class DetailsPanel extends JPanel implements ActionListener,
         add(mainScrollPane, BorderLayout.CENTER);
     }
 
+    @Impure
     private void displayMessageInfo(MessageInfo message) {
         messageNameInfo.setValue(message.getName());
         messageComponentTypeInfo.setValue(message.getComponentType());
@@ -356,6 +361,7 @@ public class DetailsPanel extends JPanel implements ActionListener,
         detailsInternalFrame.pack();
     }
 
+    @Impure
     private void displayComponentInfo(ComponentInfo component) {
         componentNameInfo.setValue(component.getName());
         componentIsRequiredInfo.setValue("" + component.isRequired());
@@ -375,6 +381,7 @@ public class DetailsPanel extends JPanel implements ActionListener,
         detailsInternalFrame.pack();
     }
 
+    @Impure
     private void displayFieldInfo(FieldInfo field, ComponentInfo component) {
         fieldTagNumberInfo.setValue("" + field.getTagNumber());
         fieldNameInfo.setValue(field.getName());
@@ -443,6 +450,7 @@ public class DetailsPanel extends JPanel implements ActionListener,
         }
     }
 
+    @Impure
     public void displayDetails(FixInfo info, ComponentInfo component) {
         clearDisplay();
         if (info instanceof FieldInfo) {
@@ -454,6 +462,7 @@ public class DetailsPanel extends JPanel implements ActionListener,
         }
     }
 
+    @Impure
     public void clearDisplay() {
         desktopPane.getDesktopManager().closeFrame(detailsInternalFrame);
         desktopPane.getDesktopManager().closeFrame(validValuesInternalFrame);
@@ -462,6 +471,7 @@ public class DetailsPanel extends JPanel implements ActionListener,
         detailsInternalFrame.getContentPane().removeAll();
     }
 
+    @Impure
     public void arrangeFrames() {
         detailsInternalFrame.setLocation(0, 0);
         descriptionInternalFrame.setLocation(0, detailsInternalFrame
@@ -494,6 +504,7 @@ public class DetailsPanel extends JPanel implements ActionListener,
         }
     }
 
+    @Impure
     public void packFrames() {
         detailsInternalFrame.pack();
         descriptionInternalFrame.pack();
@@ -501,6 +512,7 @@ public class DetailsPanel extends JPanel implements ActionListener,
         validValuesInternalFrame.pack();
     }
 
+    @Impure
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(arrangeMenuItem)) {
             arrangeFrames();
@@ -509,15 +521,19 @@ public class DetailsPanel extends JPanel implements ActionListener,
         }
     }
 
+    @SideEffectFree
     public void mouseClicked(MouseEvent e) {
     }
 
+    @SideEffectFree
     public void mouseEntered(MouseEvent e) {
     }
 
+    @SideEffectFree
     public void mouseExited(MouseEvent e) {
     }
 
+    @Impure
     public void mousePressed(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON3) {
             if (desktopPane.getAllFrames().length > 0) {
@@ -531,6 +547,7 @@ public class DetailsPanel extends JPanel implements ActionListener,
         }
     }
 
+    @SideEffectFree
     public void mouseReleased(MouseEvent e) {
     }
 
@@ -538,6 +555,7 @@ public class DetailsPanel extends JPanel implements ActionListener,
 
         private static final long serialVersionUID = 1L;
 
+        @Impure
         public Component getListCellRendererComponent(JList list, Object value,
                 int index, boolean isSelected, boolean cellHasFocus) {
             JLabel label = (JLabel) super.getListCellRendererComponent(list,

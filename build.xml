@@ -61,9 +61,9 @@
 				<fileset dir="${lib.dir}">
 					<include name="**/*.jar" />
 				</fileset>
+				<pathelement
+						location="../../../scripts/build/checker-framework/checker/dist/checker-qual.jar"/>
 			</classpath>
-			<classpath location="${major.jar}"/>
-			<compilerarg value="${plugin}"/>
 		</javac>
 	</target>
 

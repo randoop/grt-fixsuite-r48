@@ -30,6 +30,9 @@
 
 package org.fixsuite.message;
 
+import org.checkerframework.dataflow.qual.Impure;
+import org.checkerframework.dataflow.qual.Pure;
+import org.checkerframework.dataflow.qual.SideEffectFree;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -73,10 +76,12 @@ public class Library {
 
     private Map<String, DictionaryInfo> dictionaries;
 
+    @Impure
     public Library() {
         dictionaries = new TreeMap<String, DictionaryInfo>();
     }
 
+    @Impure
     public boolean loadFromDirectory(String libraryPath) {
         boolean result = true;
         long startTime = System.currentTimeMillis();
@@ -124,14 +129,17 @@ public class Library {
         return result;
     }
 
+    @SideEffectFree
     public List<DictionaryInfo> getDictionaries() {
         return new ArrayList<DictionaryInfo>(dictionaries.values());
     }
 
+    @Pure
     public DictionaryInfo getDictionary(String version) {
         return dictionaries.get(version);
     }
 
+    @Impure
     private void loadDirectory(List<File> files, String version) {
         DictionaryInfo dictionary = new DictionaryInfo(version);
         for (File file : files) {
@@ -147,6 +155,7 @@ public class Library {
     /*
      * Files must be properly arranged for the FPL parsers to work
      */
+    @Impure
     private List<File> arrangeFiles(File[] files) {
         Map<Integer, File> arrangedFiles = new TreeMap<Integer, File>();
         for (int i = 0; i < files.length; i++) {

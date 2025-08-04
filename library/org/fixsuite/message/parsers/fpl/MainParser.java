@@ -30,6 +30,8 @@
 
 package org.fixsuite.message.parsers.fpl;
 
+import org.checkerframework.dataflow.qual.Pure;
+import org.checkerframework.dataflow.qual.Impure;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
@@ -63,6 +65,7 @@ public class MainParser {
 
     private Map<String, Parser> parsers;
 
+    @Impure
     public MainParser() {
         parsers = new HashMap<String, Parser>();
         parsers.put(COMPONENTS_FILE_NAME, new ComponentsParser());
@@ -72,6 +75,7 @@ public class MainParser {
         parsers.put(MSG_TYPE_FILE_NAME, new MsgTypeParser());
     }
 
+    @Impure
     public static boolean parse(DictionaryInfo dictionary, File xmlFile) {
         boolean result = true;
 
@@ -92,6 +96,7 @@ public class MainParser {
         return result;
     }
 
+    @Impure
     private static MainParser getInstance() {
         synchronized (MainParser.class) {
             if (singleton == null) {
@@ -102,6 +107,7 @@ public class MainParser {
         return singleton;
     }
 
+    @Pure
     private Parser getParser(String fileName) {
         return parsers.get(fileName);
     }
